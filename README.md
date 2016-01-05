@@ -1,8 +1,8 @@
-# Secret Cookie package for "net/http"(and other web framework)
+## Secret Cookie for "net/http"(and other web framework)
 
 Inspired by Python tornado web framework
 
-# Short Example
+## Short Example
 ```
 package main
 
@@ -37,7 +37,7 @@ func main() {
 
 Open browse, and visit http://localhost:8001/hello, you will see "hello, visitors", if you visit again, you will see "hello, jack".
 
-# Cookie
+## Cookie
 When you write
 ```
 secretcookie.SetSecretCookie(w, "u", "jack")
@@ -52,5 +52,5 @@ secretcookie.GetSecretCookie(req, "u")
 ```
 you will get "jack"
 
-# Thanks
+## Thanks
 tornado (python web framework)
