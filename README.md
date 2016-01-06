@@ -1,4 +1,4 @@
-## Secret Cookie for "net/http"(and other web framework)
+## secure Cookie for "net/http"(and other web framework)
 
 Inspired by Python tornado web framework
 
@@ -10,17 +10,17 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/mohanson/secretcookie"
+	"github.com/mohanson/securecookie"
 )
 
 func init() {
-	secretcookie.Config.SecretKey = "my srcret key"
-	secretcookie.Config.CacheDays = 10
+	securecookie.Config.secureKey = "my srcret key"
+	securecookie.Config.CacheDays = 10
 }
 
 func SayHello(w http.ResponseWriter, req *http.Request) {
-	secretcookie.SetSecretCookie(w, "u", "jack")
-	u, err := secretcookie.GetSecretCookie(req, "u")
+	securecookie.SetsecureCookie(w, "u", "jack")
+	u, err := securecookie.GetsecureCookie(req, "u")
 	fmt.Println(u, err)
 	if err != nil {
 		w.Write([]byte("Hello, visitors"))
@@ -40,7 +40,7 @@ Open browse, and visit http://localhost:8001/hello, you will see "hello, visitor
 ## Cookie
 When you write
 ```
-secretcookie.SetSecretCookie(w, "u", "jack")
+securecookie.SetsecureCookie(w, "u", "jack")
 ```
 the truth cookie persist is
 ```
@@ -48,7 +48,7 @@ u=2|1:0|10:1451987075|1:u|8:amFjaw==|d0095993d18e39e5e59149ba4cfa066cb7f03a5e32e
 ```
 When you write
 ```
-secretcookie.GetSecretCookie(req, "u")
+securecookie.GetsecureCookie(req, "u")
 ```
 you will get "jack"
 

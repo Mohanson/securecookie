@@ -4,17 +4,17 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/mohanson/secretcookie"
+	"github.com/mohanson/securecookie"
 )
 
 func init() {
-	secretcookie.Config.SecretKey = "my srcret key"
-	secretcookie.Config.CacheDays = 10
+	securecookie.Config.SecureKey = "my srcret key"
+	securecookie.Config.CacheDays = 10
 }
 
 func SayHello(w http.ResponseWriter, req *http.Request) {
-	secretcookie.SetSecretCookie(w, "u", "jack")
-	u, err := secretcookie.GetSecretCookie(req, "u")
+	securecookie.SetSecureCookie(w, "u", "mohanson")
+	u, err := securecookie.GetSecureCookie(req, "u")
 	fmt.Println(u, err)
 	if err != nil {
 		w.Write([]byte("Hello, visitors"))
