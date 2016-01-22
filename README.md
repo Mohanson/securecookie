@@ -1,4 +1,4 @@
-## secure Cookie for "net/http"(and other web framework)
+## Secure Cookie for "net/http"(and other web framework)
 
 Inspired by Python tornado web framework
 
@@ -14,13 +14,13 @@ import (
 )
 
 func init() {
-	securecookie.Config.secureKey = "my srcret key"
+	securecookie.Config.SecureKey = "my srcret key"
 	securecookie.Config.CacheDays = 10
 }
 
 func SayHello(w http.ResponseWriter, req *http.Request) {
-	securecookie.SetsecureCookie(w, "u", "jack")
-	u, err := securecookie.GetsecureCookie(req, "u")
+	securecookie.SetSecureCookie(w, "u", "mohanson")
+	u, err := securecookie.GetSecureCookie(req, "u")
 	fmt.Println(u, err)
 	if err != nil {
 		w.Write([]byte("Hello, visitors"))
@@ -33,6 +33,7 @@ func main() {
 	http.HandleFunc("/hello", SayHello)
 	http.ListenAndServe(":8001", nil)
 }
+
 ```
 
 Open browse, and visit http://localhost:8001/hello, you will see "hello, visitors", if you visit again, you will see "hello, jack".
@@ -40,7 +41,7 @@ Open browse, and visit http://localhost:8001/hello, you will see "hello, visitor
 ## Cookie
 When you write
 ```
-securecookie.SetsecureCookie(w, "u", "jack")
+securecookie.SetSecureCookie(w, "u", "jack")
 ```
 the truth cookie persist is
 ```
@@ -48,7 +49,7 @@ u=2|1:0|10:1451987075|1:u|8:amFjaw==|d0095993d18e39e5e59149ba4cfa066cb7f03a5e32e
 ```
 When you write
 ```
-securecookie.GetsecureCookie(req, "u")
+securecookie.GetSecureCookie(req, "u")
 ```
 you will get "jack"
 
