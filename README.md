@@ -3,7 +3,7 @@
 Inspired by Python tornado web framework
 
 ## Short Example
-```[golang]
+```golang
 package main
 
 import (
