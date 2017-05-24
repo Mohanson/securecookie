@@ -155,8 +155,9 @@ func DecodeSignedValue(secure string, name string, svalue string, maxCacheDay in
 // SetSecureCookie :
 func SetSecureCookie(writer http.ResponseWriter, key string, value string) (err error) {
 	cookie := http.Cookie{
-		Name:  key,
-		Value: CreateSignedValue(Config.SecureKey, key, value),
+		Name:    key,
+		Value:   CreateSignedValue(Config.SecureKey, key, value),
+		Expires: time.Now().Add(time.Hour * 24 * time.Duration(Config.CacheDays)),
 	}
 	http.SetCookie(writer, &cookie)
 	return
